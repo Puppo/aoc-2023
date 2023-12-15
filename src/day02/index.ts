@@ -4,13 +4,13 @@ const cubes = {
   red: 12,
   green: 13,
   blue: 14,
-}
+};
 
 const parseInputV1 = (rawInput: string) => {
   const rows = rawInput.split("\n");
   const possibleGames: number[] = [];
   let i = 0;
-  start_position: while(i < rows.length) {
+  start_position: while (i < rows.length) {
     const row = rows[i];
     const [game, subsets] = row.split(":");
     const gameWithoutSpaces = game.trim();
@@ -47,7 +47,7 @@ const parseInputV2 = (rawInput: string) => {
       red: -1,
       green: -1,
       blue: -1,
-    }
+    };
     for (const subset of subsetsArr) {
       const colors = subset.split(",");
       for (const colorItem of colors) {

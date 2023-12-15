@@ -2,9 +2,9 @@ import run from "aocrunner";
 
 const parseInput = (rawInput: string) => {
   const [times, distances] = rawInput
-  .trim()
-  .split("\n")
-  .map((line) => line.slice(9).trim().split(/\s+/).map(Number));
+    .trim()
+    .split("\n")
+    .map((line) => line.slice(9).trim().split(/\s+/).map(Number));
 
   return { times, distances };
 };
@@ -20,20 +20,17 @@ const part1 = (rawInput: string) => {
   const { times, distances } = parseInput(rawInput);
 
   const totalSolutions = times
-  .map((time, index) => countSolutions(time, distances[index]))
-  .reduce((prod, count) => prod * count);
+    .map((time, index) => countSolutions(time, distances[index]))
+    .reduce((prod, count) => prod * count);
 
   return totalSolutions;
 };
 
 const part2 = (rawInput: string) => {
-  const {
-    distances,
-    times,
-  } = parseInput(rawInput);
+  const { distances, times } = parseInput(rawInput);
 
-  const bigTime = Number(times.join(''));
-  const bigDistance = Number(distances.join(''));
+  const bigTime = Number(times.join(""));
+  const bigDistance = Number(distances.join(""));
 
   return countSolutions(bigTime, bigDistance);
 };

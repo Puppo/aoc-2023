@@ -6,12 +6,13 @@ const parseInputV1 = (rawInput: string) => {
   const input = rawInput.split("\n");
   const matrix = input.map((line) => line.split(""));
 
-  const numbersInMatrix: { x: number, y: number[], values: '' }[] = [];
+  const numbersInMatrix: { x: number; y: number[]; values: "" }[] = [];
   const symbolsInMatrix: Record<number, number[]> = {};
 
   for (let i = 0; i < matrix.length; i++) {
     const line = matrix[i];
-    let currentNumber: { x: number, y: number[], values: '' } | undefined = undefined;
+    let currentNumber: { x: number; y: number[]; values: "" } | undefined =
+      undefined;
     for (let j = 0; j < line.length; j++) {
       const char = line[j];
       if (numbers.has(char)) {
@@ -38,10 +39,10 @@ const parseInputV1 = (rawInput: string) => {
 
   loop: for (const number of numbersInMatrix) {
     const { x, y: ys, values } = number;
-    
-    for (let i = x -1; i <= x + 1; i++) {
+
+    for (let i = x - 1; i <= x + 1; i++) {
       for (const y of ys) {
-        for (let j = y -1; j <= y + 1; j++) {
+        for (let j = y - 1; j <= y + 1; j++) {
           if (symbolsInMatrix[i]?.includes(j)) {
             numbersWithSymbolNeighbours.push(+values);
             continue loop;
@@ -58,12 +59,13 @@ const parseInputV2 = (rawInput: string) => {
   const input = rawInput.split("\n");
   const matrix = input.map((line) => line.split(""));
 
-  const numbersInMatrix: { x: number, y: number[], values: '' }[] = [];
+  const numbersInMatrix: { x: number; y: number[]; values: "" }[] = [];
   const gearsInMatrix: Record<number, number[]> = {};
 
   for (let i = 0; i < matrix.length; i++) {
     const line = matrix[i];
-    let currentNumber: { x: number, y: number[], values: '' } | undefined = undefined;
+    let currentNumber: { x: number; y: number[]; values: "" } | undefined =
+      undefined;
     for (let j = 0; j < line.length; j++) {
       const char = line[j];
       if (numbers.has(char)) {
@@ -90,13 +92,13 @@ const parseInputV2 = (rawInput: string) => {
 
   loop: for (const number of numbersInMatrix) {
     const { x, y: ys, values } = number;
-    
-    for (let i = x -1; i <= x + 1; i++) {
+
+    for (let i = x - 1; i <= x + 1; i++) {
       for (const y of ys) {
-        for (let j = y -1; j <= y + 1; j++) {
+        for (let j = y - 1; j <= y + 1; j++) {
           if (gearsInMatrix[i]?.includes(j)) {
             const key = `${i}-${j}`;
-            numbersWithGears[key] ??= []
+            numbersWithGears[key] ??= [];
             numbersWithGears[key].push(+values);
             continue loop;
           }
@@ -105,7 +107,9 @@ const parseInputV2 = (rawInput: string) => {
     }
   }
 
-  const res =  Object.values(numbersWithGears).map((values) => values.length < 2 ? 0 : values.reduce((acc, curr) => acc * curr, 1));
+  const res = Object.values(numbersWithGears).map((values) =>
+    values.length < 2 ? 0 : values.reduce((acc, curr) => acc * curr, 1),
+  );
 
   console.log(res);
 

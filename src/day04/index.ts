@@ -35,17 +35,18 @@ const parseInputV2 = (rawInput: string) => {
   for (const line of input) {
     const [, values] = line.split(":");
     const [winningString, cardString] = values.split("|");
-    const winnings = new Set<number>(winningString.match(/\S+/g)?.map((card) => +card) ?? []);
+    const winnings = new Set<number>(
+      winningString.match(/\S+/g)?.map((card) => +card) ?? [],
+    );
     const card = cardString.match(/\S+/g) as string[];
     const numbers = card.map((card) => +card);
     const winningCount = numbers.filter((card) => winnings.has(card)).length;
-    
+
     cards.push({
       winnings,
       numbers,
-      winningCount
+      winningCount,
     });
-
   }
 
   return cards;
@@ -64,10 +65,14 @@ const part2 = (rawInput: string) => {
 
   const cardCounts = Array(cards.length).fill(1);
   cardCounts.forEach((count, index) => {
-  for (let cardShift = 0; cardShift < cards[index].winningCount; cardShift++) {
-    cardCounts[index + cardShift + 1] += count;
-  }
-});
+    for (
+      let cardShift = 0;
+      cardShift < cards[index].winningCount;
+      cardShift++
+    ) {
+      cardCounts[index + cardShift + 1] += count;
+    }
+  });
 
   return sum(cardCounts);
 };

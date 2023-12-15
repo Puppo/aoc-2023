@@ -1,12 +1,10 @@
 import run from "aocrunner";
 
-const parseInput = (rawInput: string) => 
+const parseInput = (rawInput: string) =>
   rawInput
     .trim()
-    .split('\n')
-    .map(line => line
-                .split(' ')
-                .map(Number));
+    .split("\n")
+    .map((line) => line.split(" ").map(Number));
 
 const getNext = (sequence: number[]) => {
   const diffSeqs: number[][] = [];
@@ -14,12 +12,12 @@ const getNext = (sequence: number[]) => {
   while (currentSeq.some(Boolean)) {
     diffSeqs.push(currentSeq);
     currentSeq = Array.from(
-      { length: currentSeq.length - 1},
-      (_, index) => currentSeq[index + 1] - currentSeq[index]
+      { length: currentSeq.length - 1 },
+      (_, index) => currentSeq[index + 1] - currentSeq[index],
     );
   }
 
-  return diffSeqs.reduceRight((sum, seq) => sum + seq[seq.length -1], 0);
+  return diffSeqs.reduceRight((sum, seq) => sum + seq[seq.length - 1], 0);
 };
 
 const part1 = (rawInput: string) => {
@@ -34,8 +32,8 @@ const getPrevious = (sequence: number[]) => {
   while (currentSeq.some(Boolean)) {
     diffSeqs.push(currentSeq);
     currentSeq = Array.from(
-      { length: currentSeq.length - 1},
-      (_, index) => currentSeq[index + 1] - currentSeq[index]
+      { length: currentSeq.length - 1 },
+      (_, index) => currentSeq[index + 1] - currentSeq[index],
     );
   }
   return diffSeqs.reduceRight((sum, seq) => seq[0] - sum, 0);

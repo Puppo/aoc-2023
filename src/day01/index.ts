@@ -1,43 +1,45 @@
 import run from "aocrunner";
 
-const numbers = new Set(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+const numbers = new Set(["1", "2", "3", "4", "5", "6", "7", "8", "9"]);
 const numbersWord = {
-  "one": "1",
-  "two": "2",
-  "three": "3",
-  "four": "4",
-  "five": "5",
-  "six": "6",
-  "seven": "7",
-  "eight": "8",
-  "nine": "9"
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
 };
 
 const parseInputV1 = (rawInput: string) => {
   const rows = rawInput.split("\n");
-  const resultRows:number[] = [];
+  const resultRows: number[] = [];
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    let rowNumbers = '';
+    let rowNumbers = "";
     for (let j = 0; j < row.length; j++) {
       const char = row[j];
       if (numbers.has(char)) {
         rowNumbers += char;
       }
     }
-    resultRows[i] = parseInt(rowNumbers[0] + rowNumbers[rowNumbers.length - 1], 10);
+    resultRows[i] = parseInt(
+      rowNumbers[0] + rowNumbers[rowNumbers.length - 1],
+      10,
+    );
   }
-  
-  return resultRows;
-}
 
+  return resultRows;
+};
 
 const parseInputV2 = (rawInput: string) => {
   const rows = rawInput.split("\n");
-  const resultRows:number[] = [];
+  const resultRows: number[] = [];
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    let rowNumbers = '';
+    let rowNumbers = "";
     for (let j = 0; j < row.length; j++) {
       const char = row[j];
       if (numbers.has(char)) {
@@ -51,11 +53,14 @@ const parseInputV2 = (rawInput: string) => {
         }
       }
     }
-    resultRows[i] = parseInt(rowNumbers[0] + rowNumbers[rowNumbers.length - 1], 10);
+    resultRows[i] = parseInt(
+      rowNumbers[0] + rowNumbers[rowNumbers.length - 1],
+      10,
+    );
   }
-  
+
   return resultRows;
-}
+};
 
 function sum(array: number[]) {
   return array.reduce((acc, val) => val + acc, 0);
