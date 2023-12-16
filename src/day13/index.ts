@@ -5,15 +5,21 @@ const parseInput = (rawInput: string) =>
 
 type CheckHorizontal = (pattern: string[], row: number) => boolean;
 
-const checkHorizontal: CheckHorizontal = (pattern: string[], row: number): boolean  => {
+const checkHorizontal: CheckHorizontal = (
+  pattern: string[],
+  row: number,
+): boolean => {
   for (let i = row - 1, j = row; i >= 0 && j < pattern.length; i--, j++) {
     if (pattern[i] !== pattern[j]) return false;
   }
   return true;
-}
+};
 
-const checkHorizontalWithSmudge: CheckHorizontal = (pattern: string[], row: number): boolean  => {
-  let smudgeRow = -1
+const checkHorizontalWithSmudge: CheckHorizontal = (
+  pattern: string[],
+  row: number,
+): boolean => {
+  let smudgeRow = -1;
   for (let i = row - 1, j = row; i >= 0 && j < pattern.length; i--, j++) {
     // Rows
     const pi = pattern[i],
@@ -28,19 +34,22 @@ const checkHorizontalWithSmudge: CheckHorizontal = (pattern: string[], row: numb
   }
   if (smudgeRow > -1) return true;
   return false;
-}
+};
 
 function transpose(pattern: string[]): string[] {
   return pattern.reduce<string[]>((acc, row) => {
-    return row.split('').reduce<string[]>((a, c, i) => {
+    return row.split("").reduce<string[]>((a, c, i) => {
       a[i] ??= "";
       a[i] += c;
       return a;
     }, acc);
-  }, [])
+  }, []);
 }
 
-function calculate(patterns: string[][], checkHorizontal: CheckHorizontal): number {
+function calculate(
+  patterns: string[][],
+  checkHorizontal: CheckHorizontal,
+): number {
   let total = 0;
   p: for (const pattern of patterns) {
     // Horizontal
