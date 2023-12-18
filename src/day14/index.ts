@@ -118,7 +118,6 @@ const part2 = (rawInput: string) => {
     history.push(rawGrid);
   }
   const gridCycleLength = history.length - gridIndex;
-  // So this is the billionth state. Trust me bro.
   const lastGridOnCycle =
     history[gridIndex + ((CYCLES - gridIndex) % gridCycleLength) - 1];
 

@@ -9,8 +9,8 @@ const parseInput = (rawInput: string) =>
 type Direction = [number, number];
 type Position = [number, number];
 
-const Left = [0, 1] satisfies Direction;
-const Right = [0, -1] satisfies Direction;
+const Right = [0, 1] satisfies Direction;
+const Left = [0, -1] satisfies Direction;
 const Up = [-1, 0] satisfies Direction;
 const Down = [1, 0] satisfies Direction;
 
@@ -65,12 +65,12 @@ function calculateBeamPath(grid: string[][], initBeam: Beam): ResultGrid {
         });
       } else if (currentTile === "-") {
         nextBeams.push({
-          direction: Left,
-          position: [x + Left[0], y + Left[1]],
-        });
-        nextBeams.push({
           direction: Right,
           position: [x + Right[0], y + Right[1]],
+        });
+        nextBeams.push({
+          direction: Left,
+          position: [x + Left[0], y + Left[1]],
         });
       } else if (currentTile === "|") {
         nextBeams.push({
@@ -117,7 +117,7 @@ const calculateResult = (grid: ResultGrid) => {
 const part1 = (rawInput: string) => {
   const grid = parseInput(rawInput);
   const starts: Beam = {
-    direction: Left,
+    direction: Right,
     position: [0, 0],
   };
 
@@ -149,14 +149,14 @@ const part2 = (rawInput: string) => {
     ...Array.from(
       { length: maxRows },
       (_, row): Beam => ({
-        direction: Left,
+        direction: Right,
         position: [row, 0],
       }),
     ),
     ...Array.from(
       { length: maxRows },
       (_, row): Beam => ({
-        direction: Right,
+        direction: Left,
         position: [row, maxCols - 1],
       }),
     ),
